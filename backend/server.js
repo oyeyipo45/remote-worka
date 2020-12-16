@@ -3,9 +3,9 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const cors = require("cors")
 const connectDB = require('./config/db')
-
-
-
+const postRoutes = require("./routes/postRoutes")
+const authRoutes = require("./routes/authRoutes")
+const { notFound, errorHandler } = require('./middleware/errorMiddlerware.js')
 
 dotenv.config();
 
@@ -16,7 +16,13 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/v1/posts', postRoutes)
+app.use('/api/v1/auth', authRoutes)
 
+
+
+app.use(notFound)
+app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 5005;

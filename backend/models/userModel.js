@@ -5,39 +5,44 @@ const userSchema = mongoose.Schema(
 	{
 		name: {
 			type: String,
-			required: true,
+			required: [true, 'Please add an name'],
 		},
 		email: {
 			type: String,
-			required: true,
+			required: [true, 'Please add a valid email'],
+			match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,],
 			unique: true,
 		},
 		password: {
 			type: String,
-			required: true,
+			required: [true, 'Please add a password'],
+			minlength: 6
 		},
-		isAdmin: {
-			type: Boolean,
-			required: true,
-			default: false,
+		role: {
+			type: String,
+			enum: ['freelancer', 'hirer'],
+			default: 'user'
 		},
-	},
-	{
-		timestamps: true,
+		createdAt: {
+			type: Date,
+			default: Date.now
+		}
 	}
+	
 );
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
-	return bcrypt.compare(enteredPassword, this.password);
+	return await bcrypt.compare(enteredPassword, this.password);
 };
 
+
+//encrypting password with bcrypt
 userSchema.pre('save', async function (next) {
 	if (!this.isModified('password')) {
 		next();
 	}
-
 	const salt = await bcrypt.genSalt(10);
-	this.password = await bcrypt.hash(this.password, salt);
+	this.password = await bcrypt.hash(this.password, salt); 
 });
 
 module.exports = mongoose.model('User', userSchema);

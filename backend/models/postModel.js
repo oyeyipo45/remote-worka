@@ -47,9 +47,16 @@ const postSchema = mongoose.Schema(
 			applicationDetails: { type: String, required: true },
 			applicationLink: { type: String, required: true },
 		},
-	},
-	{
-		timestamps: true,
+		user: {
+			type: mongoose.Schema.ObjectId,
+			ref: 'User',
+			required: true
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now
+		}
+		
 	}
 );
 
