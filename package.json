@@ -1,0 +1,30 @@
+{
+  "name": "upwork-clone",
+  "version": "1.0.0",
+  "description": "A mini-clone of upwork",
+  "main": "index.js",
+  "scripts": {
+    "data:import": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder -d",
+    "server": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oyeyipo45/upwork-clone.git"
+  },
+  "author": "Damilola Oyeyipo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oyeyipo45/upwork-clone/issues"
+  },
+  "homepage": "https://github.com/oyeyipo45/upwork-clone#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8",
+    "nodemon": "^2.0.6"
+  }
+}
