@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema(
 	{
-		jobName: {
+		user: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: 'User',
+		},
+		jobTitle: {
 			type: String,
 			required: true,
 		},
@@ -12,11 +17,10 @@ const postSchema = mongoose.Schema(
 		},
 		companyLogo: {
 			type: String,
-			required: true,
 		},
-		jobDuration: {
-			type: String,
-			required: true,
+		durationFromDataPosted: {
+			type: Date,
+            default: Date.now()
 		},
 		companyWebsite: {
 			type: String,
@@ -30,27 +34,32 @@ const postSchema = mongoose.Schema(
 			type: String,
 			required: true,
         },
+		aboutUs: {
+			type: String,
+		},
+		youAre: {
+			type: Array,
+		},
+
+		jobRequirements: {
+			type: Array,
+			required: true,
+		},
+		niceToHave: {
+			type: Array,
+		},
+		benefits: {
+			type: Array,
+			required: true,
+		},
+		howToApply: {
+			type: String,
+			required: true,
+		},
         jobAvailability: {
             type: Boolean,
             default: true,
             required: true
-        },
-		jobRequirements: {
-			mainRequirement: { type: String, required: true },
-			requirementList: [{ required: true, type:String }],
-		},
-		whatWillYouDo: {
-			jobDetails: { type: String, required: true },
-			whatWillYouDoList: [{ required: true, type:String }],
-		},
-		howToApply: {
-			applicationDetails: { type: String, required: true },
-			applicationLink: { type: String, required: true },
-		},
-		user: {
-			type: mongoose.Schema.ObjectId,
-			ref: 'User',
-			required: true
 		},
 		createdAt: {
 			type: Date,
