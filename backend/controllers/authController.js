@@ -78,3 +78,68 @@ exports.login = asyncHandler(async (req, res) => {
 		throw new Error('Invalid email or password');
 	}
 });
+
+
+// @desc    Get users by Id
+// @route   GET /api/v1/users/:id
+// @access  Private
+exports.getUserById = asyncHandler(async (req, res) => {
+	try {
+		const user = await User.findById(req.params.id).select('-password')
+	if (user) {
+		res.json(user)
+	} else {
+		res.status(404);
+		throw new Error('User not Found');
+	}
+	} catch(error) {
+		throw new Error(error.message)
+	}
+});
+
+
+
+// @desc    Update user
+// @route   PUT /api/v1/users/:id
+// @access  Private
+exports.updateUser = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.params.id)
+
+	if (user) {
+		user.name = req.body.name || user.name
+		user.email = req.body.email || user.email
+		user.isAdmin = req.body.password || user.password
+
+		const updatedUser = await user.save()
+
+		res.json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			password: updatedUser.password
+		}) 
+	} else {
+		res.status(404)
+		throw new Error('User not found')
+	}
+})
+
+
+// @desc 	Delete user 
+// @route	Delete /api/v1/users/:id
+// @access  Private
+exports.deleteUsers = asyncHandler(async (req, res) => {
+	try {
+		const user = await User.findById(req.params.id);
+
+	if (user) {
+		await user.remove()
+		res.json({ message: 'User Removed' })
+	} else {
+		res.status(404);
+		throw new Error('User not Found');
+	}
+	} catch (error) {
+		throw new Error(error.message)
+	}
+});
