@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const bidSchema = mongoose.Schema(
 	{
@@ -23,8 +23,16 @@ const bidSchema = mongoose.Schema(
         },
         response: {
             type: String,
-            default: decline,
-            enum: ['accept', 'decline']
+            enum: ['accept', 'decline'],
+            default: 'decline',
+        },
+        completed: {
+            type: Boolean,
+            default: 'false',
+        },
+        proposalDetails: {
+            type: String,
+			required: [true, 'Enter your proposal details'],
         },
         bids: [{
             bidder: {type: mongoose.Schema.ObjectId, ref: 'User'},
@@ -36,4 +44,4 @@ const bidSchema = mongoose.Schema(
 
 const Bid = mongoose.model('Bid', bidSchema);
 
-export default Bid;
+module.exports = Bid;
