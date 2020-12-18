@@ -11,6 +11,9 @@ const postSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		image: {
+			type: String
+		},
 		companyName: {
 			type: String,
 			required: true,

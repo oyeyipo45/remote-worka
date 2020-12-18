@@ -6,11 +6,11 @@ const connectDB = require('./config/db')
 const postRoutes = require("./routes/postRoutes")
 const authRoutes = require("./routes/authRoutes")
 const bidRoutes = require("./routes/bidRoutes")
+const fileUploadRoutes = require("./routes/fileUploadRoute")
 const helmet = require('helmet')
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const rateLimit = require('express-rate-limit')
-const helmet = require('helmet')
 const hpp = require('hpp')
 const { notFound, errorHandler } = require('./middleware/errorMiddlerware.js')
 
@@ -47,6 +47,7 @@ app.use(hpp())
 app.use('/api/v1/posts', postRoutes)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/bids', bidRoutes)
+app.use('/api/v1/uploads', fileUploadRoutes)
 
 
 
