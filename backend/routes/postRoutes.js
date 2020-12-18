@@ -6,7 +6,7 @@ const {protect, authorize} = require ("../middleware/authMiddleware")
 
 
 router.route('/').get(getPosts);
-router.route('/:id').get(protect, getPostById)
+router.route('/:id').get( getPostById)
 router.route('/').post(protect, authorize('hirer', 'admin'), addPost)
 router.route('/:id').get(getPostById).put(protect, authorize('hirer', 'admin'),updatePosts).delete(protect, authorize('hirer', 'admin'),deletePosts)
 

@@ -10,8 +10,7 @@ exports.getPosts = asyncHandler(async (req, res) => {
     try {
 		const posts = await Post.find(req.query);
 		res.json({
-		posts : posts,
-        message: "All Posts available",
+		posts
         })
 		
 	} catch (error) {

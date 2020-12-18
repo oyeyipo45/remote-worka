@@ -1,18 +1,35 @@
 import React, { useEffect } from 'react';
-import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import Body from '../components/Body';
+import { listPosts } from '../redux/actions/postActions';
 
 const HomeScreen = () => {
+
+    const dispatch = useDispatch();
+    const postsList = useSelector((state) => state.postsList);
+    const { loading, error, posts } = postsList;
+    
+    console.log(posts.posts)
     useEffect(() => {
-        const bid = async () => {
-            const bids = await axios.get('/api/v1/posts')
-            console.log(bids)
-       }
-       bid()
-	}, []);
+    dispatch(listPosts());
+	}, [dispatch]);
     return (
-        <>
-            <h1>HELLO WORLD</h1>
-        </>
+      
+                loading ? (<p>LOADING ... </p>) : error ? (
+                    <p>ERROR ....</p>
+                ) : (
+                    <div>
+                    {/* {posts.map((post) => (
+                        <div key={ post._id }>
+                        <Body post={ post }/>
+                    </div>
+                    )) } */}
+                    
+                    <p>good</p>
+                            </div>
+                
+                )
+           
         )
 }
 

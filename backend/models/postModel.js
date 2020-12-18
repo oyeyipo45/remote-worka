@@ -2,32 +2,32 @@ const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema(
 	{
+		jobTitle: {
+			type: String,
+			required: true,
+		},
+		jobAvailability: {
+            type: Boolean,
+            default: true,
+            required: true
+		},
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
 			ref: 'User',
 		},
-		jobTitle: {
+		aboutJob: {
+			type: String,
+			required: [true, "Enter job details"]
+		},
+		hirerName: {
 			type: String,
 			required: true,
 		},
-		image: {
-			type: String
-		},
-		companyName: {
-			type: String,
-			required: true,
-		},
-		companyLogo: {
-			type: String,
-		},
+		
 		durationFromDataPosted: {
 			type: Date,
             default: Date.now()
-		},
-		companyWebsite: {
-			type: String,
-			required: true,
 		},
 		location: {
 			type: String,
@@ -37,32 +37,33 @@ const postSchema = mongoose.Schema(
 			type: String,
 			required: true,
         },
-		aboutUs: {
-			type: String,
-		},
-		youAre: {
-			type: Array,
-		},
-
+		
 		jobRequirements: {
 			type: Array,
 			required: true,
 		},
-		niceToHave: {
-			type: Array,
+		hourlyRate: {
+			type: Number,
+			default: 0.00,
+			required:  [true, "Enter hourly rate"]
 		},
-		benefits: {
-			type: Array,
-			required: true,
-		},
-		howToApply: {
+		level: {
 			type: String,
-			required: true,
+			enum: ['Entry level', 'intermidiate', 'expert'],
+			required:  [true, "Enter Level of expertise"]
 		},
-        jobAvailability: {
-            type: Boolean,
-            default: true,
-            required: true
+		
+		paymentVerification: {
+			type: Boolean,
+			default: false,
+			required:  [true, "Enter payment verification status"]
+		},
+		amountSpent: {
+			type: Number,
+		},
+		duration: {
+			type: Number,
+
 		},
 		createdAt: {
 			type: Date,
