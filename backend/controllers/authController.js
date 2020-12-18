@@ -4,7 +4,7 @@ const generateToken = require('../utils/generateToken')
 
 
 // @desc      Register  A new user
-// @route     POST /api/v1/auth/register
+// @route     POST /api/v1/users/register
 // @access    Private
 exports.register = asyncHandler(async (req, res) => {
 	try {
@@ -55,7 +55,7 @@ exports.register = asyncHandler(async (req, res) => {
 
 
 // @desc        Login user and get token
-// @route       POST /api/auth/login
+// @route       POST /api/users/login
 // @access      Public
 exports.login = asyncHandler(async (req, res) => {
 	try {

@@ -45,7 +45,7 @@ app.use(limiter)
 app.use(hpp())
 
 app.use('/api/v1/posts', postRoutes)
-app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/users', authRoutes)
 app.use('/api/v1/bids', bidRoutes)
 app.use('/api/v1/uploads', fileUploadRoutes)
 
