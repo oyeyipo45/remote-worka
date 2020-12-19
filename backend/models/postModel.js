@@ -27,9 +27,9 @@ const postSchema = mongoose.Schema(
 		
 		durationFromDataPosted: {
 			type: Date,
-            default: Date.now()
+            default: Date.now
 		},
-		location: {
+		jobLocation: {
 			type: String,
 			required: true,
 		},

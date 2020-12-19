@@ -3,21 +3,38 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listPostDetails } from '../redux/actions/postActions';
 
-const PostScreen = ({history, match}) => {
+const PostScreen = ({history, location,  match}) => {
     
     const dispatch = useDispatch();
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo, loading: userInfoLoading } = userLogin;
+
+    const userDetails = useSelector((state) => state.userDetails);
+    const { user} = userDetails;
+
     const postDetails = useSelector(state => state.postDetails)
-
     const { loading, error, post } = postDetails;
-
+    const redirect = location.search ? location.search.split('=')[1] : '/';
     useEffect(() => {
+        if (!userInfo._id && !user) {
+            history.push('/login');
+        }
+
         dispatch(listPostDetails(match.params.id))
-    }, [dispatch, match])
+    }, [dispatch,userInfo, match, history, user, redirect])
 
     return (
         <>
-            <Link className="link-back" to='/'>Go Back</Link>
+            <div className="post-details-heading">
+                <Link className="link-back" to='/'>Go Back</Link>
+                { userInfoLoading ? (<p>{ userInfoLoading }</p>) : (
+                    
+                userInfo._id === post.user ? (<button className="customer-signup-btn"><Link className="edit-post" to={`/edit/${post._id}`} >Edit Post</Link></button> ) : ( <p> Job Details</p> )
+                    
+                )}
+                
+            </div>
             
             {
                 loading ? (

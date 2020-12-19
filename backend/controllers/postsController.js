@@ -49,55 +49,17 @@ exports.getPostById = asyncHandler(async (req, res) => {
 exports.addPost = asyncHandler(async (req, res) => {
 	try {
 		const {
-			jobTitle,
-			jobAvailability,
-			companyName,
-			companyLogo,
-			companyWebsite,
-			location,
-			jobType,
-			modeOfExecution,
-			aboutUs,
-			theRole,
-			youAre,
-			jobRequirements,
-			niceToHave,
-			benefits,
-			ourValues,
-			howToApply,
+			jobTitle, jobAvailability,aboutJob,hirerName,jobLocation,jobType,jobRequirements,hourlyRate,level,paymentVerification,amountSpent,duration
 		} = req.body;
 	
 		if (
-			!jobTitle ||
-			!companyName ||
-			!companyWebsite ||
-			!location ||
-			!jobType ||
-			!jobRequirements ||
-			!benefits ||
-			!howToApply ||
-			!jobAvailability
+			!jobTitle|| !jobAvailability|| !aboutJob|| !hirerName|| !jobLocation|| !jobType|| !jobRequirements|| !hourlyRate|| !level|| !paymentVerification|| !amountSpent|| !duration
 		) {
 			throw new Error('Fill all fields');
 		} else {
 			const post = new Post({
 				user: req.user._id,
-				jobTitle,
-				companyName,
-				companyLogo,
-				companyWebsite,
-				location,
-				jobType,
-				modeOfExecution,
-				aboutUs,
-				theRole,
-				youAre,
-				jobRequirements,
-				niceToHave,
-				benefits,
-				ourValues,
-				howToApply,
-				jobAvailability,
+				jobTitle, jobAvailability,aboutJob,hirerName,jobLocation,jobType,jobRequirements,hourlyRate,level,paymentVerification,amountSpent,duration
 			});
 	
 			const createdPost = await post.save();
@@ -115,10 +77,13 @@ exports.addPost = asyncHandler(async (req, res) => {
 // @access    Private
 exports.updatePosts = asyncHandler(async (req, res) => {
 	try {
+		
+		
 		const post = await Post.findById(req.params.id);
-	if (post.user.toString() !== req.user.id && req.user.role !== 'admin') {
+		
+		if (post.user.toString() !== req.user.id && req.user.role !== 'admin') {
 		res.status(401)
-		throw new Error(`User ${req.params.id} is not authorized to update this  job post`)
+		throw new Error(`User not authorized to update this job post`)
 	}
 	if (post) {
 		(post.user = req.user._id || post.user),
@@ -127,37 +92,35 @@ exports.updatePosts = asyncHandler(async (req, res) => {
 			(post.companyLogo = req.body.companyLogo || post.companyLogo),
 			(post.companyWebsite = req.body.companyWebsite || post.companyWebsite),
 			(post.location = req.body.location || post.location),
-			(post.jobType = req.body.jobType || post.jobType),
-			(post.modeOfExecution = req.body.modeOfExecution || post.modeOfExecution),
-			(post.aboutUs = req.body.aboutUs || post.aboutUs),
-			(post.theRole = req.body.theRole || post.theRole),
-			(post.youAre = req.body.youAre || post.youAre),
-			(post.jobRequirements = req.body.jobRequirements || post.jobRequirements),
-			(post.niceToHave = req.body.niceToHave || post.niceToHave),
-			(post.benefits = req.body.benefits || post.benefits),
-			(post.ourValues = req.body.ourValues || post.ourValues),
-			(post.howToApply = req.body.howToApply || post.howToApply),
-			(post.jobAvailability = req.body.jobAvailability || post.jobAvailability);
+			(jobTitle = req.body.jobTitle   ||  post.jobTitle),
+			(jobAvailability = req.body. jobAvailability  ||  post.jobAvailability),
+			(aboutJob = req.body.aboutJob  ||  post.aboutJob),
+			(hirerName = req.body.hirerName   ||  post.hirerName),
+			(jobLocation = req.body.jobLocation   ||  post.jobLocation),
+			(jobType = req.body.jobType   ||  post.jobType),
+			(jobRequirements = req.body.jobRequirements   ||  post.jobRequirements),
+			(hourlyRate = req.body.hourlyRate   ||  post.hourlyRate),
+			(level = req.body.level   ||  post.level),
+			(paymentVerification = req.body.paymentVerification   ||  post.paymentVerification),
+			(amountSpent = req.body.amountSpent   ||  post.amountSpent),
+			(duration = req.body.duration   ||  post.duration)
 
 		const updatedPost = await post.save();
 
 		res.status(200).json({
+			_id: req.params.id,
 			jobTitle: updatedPost.jobTitle,
-			companyName: updatedPost.companyName,
-			companyLogo: updatedPost.companyLogo,
-			companyWebsite: updatedPost.companyWebsite,
-			location: updatedPost.location,
-			jobType: updatedPost.jobType,
-			modeOfExecution: updatedPost.modeOfExecution,
-			aboutUs: updatedPost.aboutUs,
-			theRole: updatedPost.theRole,
-			youAre: updatedPost.youAre,
-			jobRequirements: updatedPost.jobRequirements,
-			niceToHave: updatedPost.niceToHave,
-			benefits: updatedPost.benefits,
-			ourValues: updatedPost.ourValues,
-			howToApply: updatedPost.howToApply,
 			jobAvailability: updatedPost.jobAvailability,
+			aboutJob: updatedPost.aboutJob,
+			hirerName: updatedPost.hirerName,
+			jobLocation: updatedPost.jobLocation,
+			jobType: updatedPost.jobType,
+			jobRequirements: updatedPost.jobRequirements,
+			hourlyRate: updatedPost.hourlyRate,
+			level: updatedPost.level,
+			paymentVerification: updatedPost.paymentVerification,
+			amountSpent: updatedPost.amountSpent,
+			duration: updatedPost.duration
 		});
 	} else {
 		res.status(404);
@@ -178,7 +141,7 @@ exports.deletePosts = asyncHandler(async (req, res) => {
 		const post = await Post.findById(req.params.id);
 		if (post.user.toString() !== req.user.id && req.user.role !== 'admin') {
 			res.status(401)
-			throw new Error(`User ${req.params.id} is not authorized to delete this  job post`)
+			throw new Error(`User not authorized to delete this  job post`)
 		}
 	if (post) {
 		await post.remove()

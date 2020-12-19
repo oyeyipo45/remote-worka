@@ -18,6 +18,12 @@
   --company-btn-bg: rgba(89, 100, 224, 0.1);
   --company-btn-bg-hover: rgba(147, 155, 244, 0.35);
   --body-font: "Poppins", sans-serif;
+  --first-color: #4070f4;
+  --second-color: #0e2431;
+  --text-color: #0e2431;
+  --second-text-color: #fff;
+  --button-text-color: #0e2431;
+  --first-color-ball: #4070f4;
 }
 
 /*===== EXTENDS AN REUSABLE CLASSES =====*/
@@ -151,7 +157,6 @@ body {
 }
 
 .link-back {
-  margin-left: 2rem;
   margin-bottom: 3rem;
   margin-top: 5rem;
 }
@@ -245,11 +250,12 @@ textarea {
 }
 .nav__link {
   position: relative;
-  color: #fff;
+  color: var(--first-color);
 }
 .nav__link:hover {
   position: relative;
 }
+
 .nav__link:hover::after {
   position: absolute;
   content: "";
@@ -298,6 +304,7 @@ textarea {
   .nav__list {
     display: flex;
     padding-top: 0;
+    border: "1px solid red";
   }
   .nav__item {
     margin-left: var(--mb-4);
@@ -307,7 +314,8 @@ textarea {
     display: none;
   }
   .nav__link {
-    color: var(--second-color);
+    color: var(--first-color);
+    padding: 0 1rem;
   }
   .down {
     margin-bottom: 1.5rem;
@@ -752,6 +760,11 @@ section {
 .register {
   margin-top: 5rem;
 }
+
+.login {
+  height: 60vh;
+  margin-top: 5rem;
+}
 .customer-signin,
 .customer-signup {
   max-width: 600px;
@@ -788,6 +801,14 @@ section {
 .customer-signin-form-group {
   margin: 1.85rem 0;
 }
+
+.proposal-form-group {
+  margin: 1rem 0;
+}
+
+.proposal-heading {
+  margin-bottom: 0rem;
+}
 .customer-signin-form-input,
 .customer-signup-form-input,
 .change-password-form-input {
@@ -816,6 +837,24 @@ section {
 }
 .customer-signin-form-label {
   color: #7e8da3;
+}
+
+.delete-btn {
+  display: block;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  margin: 2rem 0 0 0;
+  border-radius: 7px;
+  background-color: red;
+  border: 0px solid white;
+  outline: none;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.delete-btn:hover {
+  background-color: white;
+  box-shadow: inset 0 0 0 1px red;
+  color: red;
 }
 .customer-signin-btn,
 .customer-signup-btn,
@@ -856,4 +895,35 @@ section {
   .customer-signup {
     height: auto;
   }
+}
+
+.profile-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-post {
+  margin-top: 5rem;
+}
+
+.post-details-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding-right: 1rem;
+}
+
+.edit-post {
+  color: white;
+  text-decoration: none;
+}
+
+.post-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

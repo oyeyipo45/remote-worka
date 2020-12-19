@@ -15,20 +15,41 @@ const ProposalScreen = () => {
         console.log("good")
     }
     return (
+
+        <div className="login">
+                
+        <div className="customer-signin">
+        <div className="customer-signin-header">
+        <h3 className="customer-signin-heading">Enter your proposal details below</h3>
+
+        
+        </div>
+
+        <form action="" onSubmit={submitHandler} className="customer-signin-form">
+
+        <label className="proposal-heading">Proposal Details</label>
+        <div className="proposal-form-group">
+        <textarea col="20" row="50" 
+        className="customer-signin-form-input" value={ proposal } onChange={ (e) => setProposal(e.target.value) }  placeholder="Enter proposal details here"></textarea>
+        </div>
+        <label className="proposal-heading">Bid Prize</label>
+        <div className="proposal-form-group">
+        <input
+            type="text"
+            className="customer-signin-form-input"
+            placeholder="Bid Price"
+            required
+            value={bid}
+            onChange={(e) => setBid(e.target.value)}
+        />
+        </div>
+        <div className="customer-signin-form-group">
+        <button type="submit" className="customer-signin-btn">Place Bid</button>
+        </div>
        
-        <section className="proposal bd-grid">
-            <div className="proposal-details">
-                <h3 class="proposal-title">Enter your proposal details below</h3>
-                <form className="proposal-form" onSubmit={submitHandler}>
-                    <textarea col="20" row="30" className="bid-details" value={ proposal } placeholder="Enter proposal details here"></textarea>
-
-                    <p class="bid-title">Bid Prize</p>
-
-                    <input type="number"  className="bid-figure" value={bid} placeholder="Enter bid here"/>
-                    <button  className="proposal-button" type="submit">Submit Bid</button>
-               </form>
-            </div>
-        </section>
+        </form>
+        </div>
+        </div>
     )
 }
 

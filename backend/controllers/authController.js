@@ -41,7 +41,10 @@ exports.register = asyncHandler(async (req, res) => {
 
 	if (user) {
 		res.status(201).json({
-            success: true,
+            _id: user._id,
+			name: user.name,
+			email: user.email,
+			role: user.role,
             token: generateToken(user._id),
 		});
 
@@ -114,15 +117,21 @@ exports.updateUser = asyncHandler(async (req, res) => {
 	if (user) {
 		user.name = req.body.name || user.name
 		user.email = req.body.email || user.email,
-		user.password =  req.body.email || updatedUser.password 
+		user.password = req.body.email || updatedUser.password 
+		if (req.body.password) {
+			user.password = req.body.password;
+		}
 
 		const updatedUser = await user.save()
 
+		
 		res.json({
 			_id: updatedUser._id,
 			name: updatedUser.name,
 			email: updatedUser.email,
-			password: updatedUser.password
+			role: user.role,
+			password: updatedUser.password,
+			token: generateToken(updatedUser._id),
 		}) 
 	}
 	} catch (error) { 
@@ -140,12 +149,10 @@ exports.deleteUsers = asyncHandler(async (req, res) => {
 		const user = await User.findById(req.params.id);
 	if (user) {
 		await user.remove()
-		res.json({ message: 'User Removed' })
-	} else {
+		res.json({ message: 'User Deleted' })
+	} 
+	} catch (error) {
 		res.status(404);
 		throw new Error('User not Found');
-	}
-	} catch (error) {
-		throw new Error(error.message)
 	}
 });

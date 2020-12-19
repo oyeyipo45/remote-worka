@@ -6,6 +6,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProposalScreen from './screens/ProposalScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import LoginScreen from './screens/LoginScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import CreatePostScreen from './screens/CreatePostScreen';
+import AppliedJobsScreen from './screens/AppliedJobsScreens';
+import EditPostScreen from './screens/EditPostScreen';
 
 
 const App = () => {
@@ -15,7 +20,12 @@ const App = () => {
       <div className="main-body">
       <Header />
         <main className="main-section">
-          <Route path="/register" component={RegisterScreen} />
+        <Route path="/edit/:id" component={ EditPostScreen } />
+          <Route path="/createPost" component={ CreatePostScreen } />
+          <Route path="/appliedJobs/:id" component={ AppliedJobsScreen } />
+          <Route path="/profile/:id" component={ ProfileScreen } />
+          <Route path="/register" component={ RegisterScreen } />
+          <Route path="/login" component={LoginScreen} />
           <Route path="/post/:id" component={ PostScreen } />
           <Route path="/proposal/:id" component={ ProposalScreen } />
           <Route path='/' exact component={ HomeScreen } />

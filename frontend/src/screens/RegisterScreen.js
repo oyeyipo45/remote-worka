@@ -90,7 +90,7 @@ const RegisterScreen = ({location, history}) => {
 					type="password"
 					className="customer-signup-form-input"
                             placeholder="Password"
-                            minlength="6"
+                            minLength="6"
                             required
                             value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -99,14 +99,14 @@ const RegisterScreen = ({location, history}) => {
 					type="password"
 					className="customer-signup-form-input"
                             placeholder="Confirm Password"
-                            minlength="6"
+                            minLength="6"
                             required
                             value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 				/>
 			</div>
 			<div className="customer-signup-form-group">
-				<button className="customer-signup-btn">Create my account</button>
+				<button type="submit" className="customer-signup-btn">Create my account</button>
 			</div>
 		</form>
 	</div>

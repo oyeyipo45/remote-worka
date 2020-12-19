@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-import { postListReducer, postDetailsReducer } from './reducers/postReducers';
+import { postListReducer, postDetailsReducer, postCreateReducer, postEditReducer, postDeleteReducer } from './reducers/postReducers';
 import {
 	userLoginReducer,
 	userRegisterReducer,
@@ -12,11 +12,19 @@ import {
 	userDeleteReducer,
 	userUpdateReducer,
 } from './reducers/userReducers';
+import { bidCreateReducer, bidDetailsReducer, bidEditReducer, bidListReducer } from './reducers/bidReducers';
 
 
 const reducer = combineReducers({
 	postsList: postListReducer,
+	postEdit: postEditReducer,
+	postCreate: postCreateReducer,
 	postDetails: postDetailsReducer,
+	postDelete: postDeleteReducer,
+	bidsList: bidListReducer,
+	bidEdit: bidEditReducer,
+	bidCreate: bidCreateReducer,
+	bidDetails: bidDetailsReducer,
 	userLogin: userLoginReducer,
 	userRegister: userRegisterReducer,
 	userDetails: userDetailsReducer,
