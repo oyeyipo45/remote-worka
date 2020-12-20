@@ -7,8 +7,9 @@ const postSchema = mongoose.Schema(
 			required: true,
 		},
 		jobAvailability: {
-            type: Boolean,
-            default: true,
+            type: String,
+			default: 'pending',
+			enum: ['pending', 'accepted', 'rejected'],
             required: true
 		},
 		user: {
@@ -24,7 +25,6 @@ const postSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		
 		durationFromDataPosted: {
 			type: Date,
             default: Date.now

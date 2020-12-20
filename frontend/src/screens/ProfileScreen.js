@@ -1,142 +1,149 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, getUserDetails } from '../redux/actions/userActions';
-import { updateUserProfile } from '../redux/actions/userActions';
-import { USER_DETAILS_RESET, USER_UPDATE_PROFILE_RESET } from '../redux/constants/userConstants';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser, getUserDetails } from "../redux/actions/userActions";
+import { updateUserProfile } from "../redux/actions/userActions";
+import {
+  USER_DETAILS_RESET,
+  USER_UPDATE_PROFILE_RESET,
+} from "../redux/constants/userConstants";
 
+const ProfileScreen = ({ location, history }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
-const ProfileScreen = ({ location, history }) => { 
+  const dispatch = useDispatch();
 
-    const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
-	const [message, setMessage] = useState(null);
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user, loading, error } = userDetails;
 
-	const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-	const userDetails = useSelector((state) => state.userDetails);
-	const { user, loading, error } = userDetails;
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
-	const userLogin = useSelector((state) => state.userLogin);
-	const { userInfo } = userLogin;
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdate;
 
-	const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-    const { success } = userUpdateProfile;
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
 
-    const userUpdate = useSelector(state => state.userUpdate)
-	const { loading: loadingUpdate, error: errorUpdate, success: successUpdate} = userUpdate
-
-    const userDelete = useSelector((state) => state.userDelete);
-    const { success: successDelete } = userDelete;
-    
-    useEffect(() => {
-		if (!userInfo || !user) {
-			history.push('/login');
-		} else {
-			if ( !user || !user.name ) {
-				dispatch({ type: USER_UPDATE_PROFILE_RESET });
-				dispatch(getUserDetails(userInfo._id));
-			} else {
-				setName(user.name);
-				setEmail(user.email);
-			}
-		}
-    }, [dispatch, history, userInfo, user, successUpdate, successDelete]);
-    
-    const submitHandler = (e) => {
-		e.preventDefault();
-		if (password !== confirmPassword) {
-			setMessage('password do not match');
-        } else {
-            
-            dispatch(updateUserProfile({ name, email, password, id: user._id }));
-		}
-    };
-    const deleteUserHandler = (id) => {
-        if (window.confirm('Are you sure')) {
-            dispatch({ type: USER_DETAILS_RESET })
-            dispatch(deleteUser(id));
-        }
+  useEffect(() => {
+    if (!userInfo || !user) {
+      history.push("/login");
+    } else {
+      if (!user || !user.name) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+        dispatch(getUserDetails(userInfo._id));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+      }
     }
-    return (
-        <>
-            <div className="register">
+  }, [dispatch, history, userInfo, user, successUpdate, successDelete]);
 
-       
-<div className="customer-signup">
-<div className="customer-signup-header">
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("password do not match");
+    } else {
+      dispatch(updateUserProfile({ name, email, password, id: user._id }));
+    }
+  };
+  const deleteUserHandler = (id) => {
+    if (window.confirm("Are you sure")) {
+      dispatch({ type: USER_DETAILS_RESET });
+      dispatch(deleteUser(id));
+    }
+  };
+  return (
+    <>
+      <div className="register">
+        <div className="customer-signup">
+          <div className="customer-signup-header">
             <h3 className="customer-signup-heading">Edit your details</h3>
 
-          <div> {loadingUpdate && "Loading .."}
-			{errorUpdate && <p>{errorUpdate}</p>}
-            {success && "Profile Updated"}
-            {message && <p >{message}</p>}
-            { error && <p >{ error }</p> }
-            { loading && "Loading ..." }
-                        
-            <div className="customer-signin-form-group">
-			<button  className="delete-btn" onClick={ () => deleteUserHandler(user._id)}>Delete Profile</button>
+            <div>
+              {" "}
+              {loadingUpdate && "Loading .."}
+              {errorUpdate && <p>{errorUpdate}</p>}
+              {success && "Profile Updated"}
+              {message && <p>{message}</p>}
+              {error && <p>{error}</p>}
+              {loading && "Loading ..."}
+              <div className="customer-signin-form-group">
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteUserHandler(user._id)}
+                >
+                  Delete Profile
+                </button>
+              </div>
             </div>
-            </div> 
-</div>
+          </div>
 
-<form action="" onSubmit={submitHandler}>
-    <div className="customer-signup-form-group">
-        <input
-            type="text"
-            className="customer-signup-form-input"
-            placeholder="Full Name"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-        />
-    </div>
-    
-    <div className="customer-signup-form-group">
-        <input
-            type="email"
-            className="customer-signup-form-input"
-            placeholder="Email Address"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-        />
-     </div>
-   
-    <div className="customer-signup-form-group">
-        <input
-            type="password"
-            className="customer-signup-form-input"
-                    placeholder="Password"
-                    minLength="6"
-                    required
-                    value={password}
+          <form action="" onSubmit={submitHandler}>
+            <div className="customer-signup-form-group">
+              <input
+                type="text"
+                className="customer-signup-form-input"
+                placeholder="Full Name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className="customer-signup-form-group">
+              <input
+                type="email"
+                className="customer-signup-form-input"
+                placeholder="Email Address"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="customer-signup-form-group">
+              <input
+                type="password"
+                className="customer-signup-form-input"
+                placeholder="Password"
+                minLength="6"
+                required
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-            type="password"
-            className="customer-signup-form-input"
-                    placeholder="Confirm Password"
-                    minLength="6"
-                    required
-                    value={confirmPassword}
+              />
+              <input
+                type="password"
+                className="customer-signup-form-input"
+                placeholder="Confirm Password"
+                minLength="6"
+                required
+                value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-                        </div>
-        <div className="profile-buttons">
-        <div className="customer-signin-form-group">
-			<button type="submit" className="customer-signin-btn">Update Profile</button>
+              />
+            </div>
+            <div className="profile-buttons">
+              <div className="customer-signin-form-group">
+                <button type="submit" className="customer-signin-btn">
+                  Update Profile
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-                        
-       
-        </div>
-</form>
-</div>
-</div>
-        </>
-    )
-}
-
+      </div>
+    </>
+  );
+};
 
 export default ProfileScreen;

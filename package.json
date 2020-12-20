@@ -4,10 +4,10 @@
   "description": "A mini-clone of upwork",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
     "data:import": "node backend/seeder.js",
     "data:destroy": "node backend/seeder -d",
-    "server": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/oyeyipo45/upwork-clone#readme",
   "dependencies": {
-    "@shelf/jest-mongodb": "^1.2.3",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.23.0",
     "colors": "^1.4.0",
