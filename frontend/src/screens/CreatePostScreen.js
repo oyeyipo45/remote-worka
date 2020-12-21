@@ -79,9 +79,9 @@ const CreatePostScreen = ({ location, history }) => {
         <div className="customer-signin-header">
           <h3 className="customer-signin-heading">Create Job Post</h3>
 
-          {message && <p>{message}</p>}
-          {error && <p>{error}</p>}
-          {success && <p>Post Created</p>}
+          {message && <p className="color-green">{message}</p>}
+          {error && <p className="color-red"> {error}</p>}
+          {success && <p className="color-green">Post Created</p>}
         </div>
 
         <form
@@ -99,15 +99,18 @@ const CreatePostScreen = ({ location, history }) => {
               onChange={(e) => setJobTitle(e.target.value)}
             />
           </div>
-          <div className="customer-signin-form-group">
-            <input
-              type="text"
-              className="customer-signin-form-input"
-              placeholder="Job Availability"
-              required
+          <div className="customer-signup-form-group">
+            <select
+              className="customer-signup-form-input"
               value={jobAvailability}
               onChange={(e) => setJobAvailability(e.target.value)}
-            />
+              name="Job Availability"
+            >
+              <option value="">Select Availability</option>
+              <option value="pending" selected>
+                pending
+              </option>
+            </select>
           </div>
           <div className="customer-signin-form-group">
             <input
@@ -143,8 +146,7 @@ const CreatePostScreen = ({ location, history }) => {
             <input
               type="text"
               className="customer-signin-form-input"
-              placeholder="Job Type"
-              required
+              placeholder="Job Type is remote or fulltime"
               value={jobType}
               onChange={(e) => setJobType(e.target.value)}
             />
@@ -169,25 +171,41 @@ const CreatePostScreen = ({ location, history }) => {
               onChange={(e) => setHourlyRate(e.target.value)}
             />
           </div>
-          <div className="customer-signin-form-group">
-            <input
-              type="text"
-              className="customer-signin-form-input"
-              placeholder="Expertise Level"
-              required
+
+          <div className="customer-signup-form-group">
+            <select
+              className="customer-signup-form-input"
               value={level}
               onChange={(e) => setLevel(e.target.value)}
-            />
+              name="Expertise Level"
+            >
+              <option value="">Select Expertise Level</option>
+              <option value="Entry level" selected>
+                Entry Level
+              </option>
+              <option value="intermidiate" selected>
+                Intermidiate
+              </option>
+              <option value="expert" selected>
+                Expert
+              </option>
+            </select>
           </div>
-          <div className="customer-signin-form-group">
-            <input
-              type="text"
-              className="customer-signin-form-input"
-              placeholder="Payment Verification"
-              required
+          <div className="customer-signup-form-group">
+            <select
+              className="customer-signup-form-input"
               value={paymentVerification}
               onChange={(e) => setPaymentVerification(e.target.value)}
-            />
+              name="payment verification"
+            >
+              <option value="">Payment Verification</option>
+              <option value="true" selected>
+                true
+              </option>
+              <option value="false" selected>
+                false
+              </option>
+            </select>
           </div>
           <div className="customer-signin-form-group">
             <input

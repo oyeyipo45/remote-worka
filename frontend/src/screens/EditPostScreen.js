@@ -127,13 +127,13 @@ const EditPostScreen = ({ match, location, history }) => {
           <h3 className="customer-signin-heading">Edit Job Post</h3>
           <div className="bidlist-screen">
             {loadingDelete && <p> DELETING POST ...</p>}
-            {successDelete && <p> {successDelete}</p>}
-            {errorDelete && <p> {errorDelete}</p>}
+            {successDelete && <p className="color-green"> {successDelete}</p>}
+            {errorDelete && <p className="color-red"> {errorDelete}</p>}
             {EditLoading && <p> UPDATING ...</p>}
-            {editError && <p>{editError}</p>}
+            {editError && <p className="color-red">{editError}</p>}
             {loading && <p>LOADING ...</p>}
-            {error && <p>{error}</p>}
-            {success && <p>{success}</p>}
+            {error && <p className="color-red">{error}</p>}
+            {success && <p className="color-green">{success}</p>}
           </div>
         </div>
 

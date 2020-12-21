@@ -8,7 +8,6 @@ const HomeScreen = () => {
   const postsList = useSelector((state) => state.postsList);
   const { loading, error, posts } = postsList;
 
-  console.log(posts);
   useEffect(() => {
     dispatch(listPosts());
   }, [dispatch]);
@@ -19,7 +18,7 @@ const HomeScreen = () => {
     </div>
   ) : error ? (
     <div className="bidlist-screen">
-      <p>ERROR ....</p>
+      <p className="color-red">ERROR ....</p>
     </div>
   ) : (
     <div>

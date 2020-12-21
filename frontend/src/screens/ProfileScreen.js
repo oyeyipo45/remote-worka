@@ -73,10 +73,10 @@ const ProfileScreen = ({ location, history }) => {
             <div>
               {" "}
               {loadingUpdate && "Loading .."}
-              {errorUpdate && <p>{errorUpdate}</p>}
-              {success && "Profile Updated"}
+              {errorUpdate && <p className="color-red">{errorUpdate}</p>}
+              {success && <p className="color-green">Profile Updated</p>}
               {message && <p>{message}</p>}
-              {error && <p>{error}</p>}
+              {error && <p className="color-red">{error}</p>}
               {loading && "Loading ..."}
               <div className="customer-signin-form-group">
                 <button

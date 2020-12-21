@@ -40,7 +40,7 @@ const RegisterScreen = ({ location, history }) => {
           <h3 className="customer-signup-heading">Create an account</h3>
 
           {message && <p>{message}</p>}
-          {error && <p>{error}</p>}
+          {error && <p className="color-red">{error}</p>}
           {loading && "Loading ..."}
         </div>
 

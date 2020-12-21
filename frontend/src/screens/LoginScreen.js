@@ -37,7 +37,7 @@ const LoginScreen = ({ location, history }) => {
           <h3 className="customer-signin-heading">Log In</h3>
 
           {message && <p>{message}</p>}
-          {error && <p>{error}</p>}
+          {error && <p className="color-red">{error}</p>}
           {loading && "LOADING  ......"}
         </div>
 

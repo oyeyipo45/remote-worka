@@ -10,7 +10,6 @@ const Header = () => {
 
   const bidsList = useSelector((state) => state.bidsList);
   const { bids } = bidsList;
-  console.log(bids);
   const dispatch = useDispatch();
 
   const logoutHandler = (e) => {
@@ -20,7 +19,6 @@ const Header = () => {
 
   const getBidListHandler = () => {
     dispatch(listBids());
-    console.log("good");
   };
 
   return (
@@ -102,7 +100,10 @@ const Header = () => {
           </div>
         )}
         <div className="nav__toggle" id="nav-toggle">
-          <p className="">PP</p>
+          <img
+            src="https://img.icons8.com/android/24/000000/menu.png"
+            alt="hamburger icon"
+          />
         </div>
       </nav>
     </header>

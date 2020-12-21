@@ -13,7 +13,6 @@ import EditPostScreen from "./screens/EditPostScreen";
 import BidsListScreen from "./screens/BidsListScreen";
 import BidDetailsScreen from "./screens/BidDetailsScreen";
 import PlacedBidsScreen from "./screens/PlacedBidsScreen";
-import BidSuccessScreen from "./screens/BidSuccessScreen";
 
 const App = () => {
   return (
@@ -21,7 +20,6 @@ const App = () => {
       <div className="main-body">
         <Header />
         <main className="main-section">
-          <Route path="/bidSuccessful" component={BidSuccessScreen} />
           <Route path="/placedBids/:id" component={PlacedBidsScreen} />
           <Route path="/bids/:id" component={BidDetailsScreen} />
           <Route path="/edit/:id" component={EditPostScreen} />

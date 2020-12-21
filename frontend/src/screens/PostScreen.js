@@ -7,11 +7,9 @@ const PostScreen = ({ history, location, match }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo, loading: userInfoLoading } = userLogin;
-  console.log(userInfo);
+  const { userInfo } = userLogin;
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
-  console.log(user, "useeeeeeee");
   const postDetails = useSelector((state) => state.postDetails);
   const { loading, error, post } = postDetails;
   const redirect = location.search ? location.search.split("=")[1] : "/";

@@ -14,7 +14,6 @@ const BidDetails = ({ history, location, match }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading: userInfoLoading } = userLogin;
-  console.log(userInfo);
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
@@ -55,7 +54,6 @@ const BidDetails = ({ history, location, match }) => {
   const jobCompletedHandler = () => {
     dispatch(markJobAsCompleted(bid._id, ""));
     dispatch(listBidDetails(match.params.id));
-    console.log("good");
   };
   return (
     <>

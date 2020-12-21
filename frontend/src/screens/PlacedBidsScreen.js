@@ -7,7 +7,6 @@ const PlacedBidsScreen = ({ match, history }) => {
   const userId = match.params.id;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  console.log(userInfo);
   const placedBidsList = useSelector((state) => state.placedBidsList);
   const { bids, loading, error } = placedBidsList;
   const dispatch = useDispatch();

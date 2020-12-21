@@ -23,7 +23,6 @@ exports.createBid = asyncHandler(async (req, res) => {
         jobLocation,
         jobTitle,
       });
-      console.log(bid);
       const placedBid = await bid.save();
       res.status(201).json({
         message: "Success",
@@ -67,37 +66,6 @@ exports.getAllBids = asyncHandler(async (req, res) => {
     throw new Error("Error getting Bids");
   }
 });
-
-// @desc 	Get Hirer Bided Jobs
-// @route 	GET /api/v1/bids/jobs
-// @access 	Private
-// exports.bidedJobs = asyncHandler(async (req, res) => {
-//   try {
-//     const user = req.params.id;
-//     const bids = await Bid.find();
-//     const posts = await Post.find();
-//     const gottenBids = bids.map((bid) => bid.post);
-//     const gottenPosts = posts.map((id) => id._id);
-
-//     const gg = gottenBids.filter((gottenPosts) => a.indexOf(e) !== i);
-// console.log(posts, "tenID");
-// console.log(bids, "got");
-// console.log(gottenPosts, "gottenID");
-// console.log(gottenBids, "gottenBID");
-// const Bided = gottenBids.filter((got) => posts === got);
-// var z = x.filter(function (val) {
-//   return y.indexOf(val) != -1;
-// });
-//const gots = gottenBids.concat(gottenPosts);
-
-// console.log(gg, "vvvvvvvvvv");
-// if (get) {
-//   res.status(200).json(get);
-// }
-//   } catch (error) {
-//     throw new Error("cannot get applied jobs");
-//   }
-// });
 
 // @desc 	Get Bid Id
 // @route 	GET /api/v1/bids/:id
@@ -187,7 +155,6 @@ exports.completeJob = asyncHandler(async (req, res) => {
       res.status(200).json({ acceptedBid, updatedPost });
     }
   } catch (error) {
-    // res.status(404).json({ message: "Bid response not changed" });
-    console.log(error.message);
+    res.status(404).json(erroe.message);
   }
 });

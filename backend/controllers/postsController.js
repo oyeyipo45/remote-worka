@@ -9,7 +9,7 @@ exports.getPosts = asyncHandler(async (req, res) => {
     const posts = await Post.find(req.query);
     res.json(posts);
   } catch (error) {
-    console.log(error.message);
+    res.status(404).json(error.message);
   }
 });
 
@@ -25,7 +25,7 @@ exports.getPostById = asyncHandler(async (req, res) => {
       res.status(404).json({ message: "Post Not Found" });
     }
   } catch (error) {
-    console.log(error.message);
+    res.status(404).json(error.message);
   }
 });
 

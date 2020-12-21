@@ -37,7 +37,7 @@ export const listBids = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(`/api/v1/bids`, config);
-    console.log(data);
+
     dispatch({ type: BID_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -64,7 +64,7 @@ export const placedBids = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(`/api/v1/bids/appliedJobs/${id}`, config);
-    console.log(data);
+
     dispatch({ type: BID_MADE_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -90,7 +90,7 @@ export const listBidDetails = (id) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(`/api/v1/bids/${id}`, config);
-    console.log(data);
+
     dispatch({ type: BID_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -105,7 +105,6 @@ export const listBidDetails = (id) => async (dispatch, getState) => {
 
 export const createBid = (post, bid) => async (dispatch, getState) => {
   try {
-    console.log("reachng");
     dispatch({
       type: BID_CREATE_REQUEST,
     });
@@ -120,9 +119,7 @@ export const createBid = (post, bid) => async (dispatch, getState) => {
       },
     };
 
-    console.log(bid);
     const { data } = await axios.post(`/api/v1/bids/${post}`, bid, config);
-    console.log(data);
 
     dispatch({
       type: BID_CREATE_SUCCESS,
@@ -156,7 +153,6 @@ export const acceptBid = (id, bid) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(`/api/v1/bids/accept/${id}`, bid, config);
-    console.log(data);
 
     dispatch({
       type: BID_ACCEPT_SUCCESS,
@@ -188,9 +184,7 @@ export const declineBid = (id, bid) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(config);
     const { data } = await axios.put(`/api/v1/bids/decline/${id}`, bid, config);
-    console.log(data);
 
     dispatch({
       type: BID_DECLINE_SUCCESS,
@@ -228,7 +222,6 @@ export const markJobAsCompleted = (id, bid) => async (dispatch, getState) => {
       bid,
       config
     );
-    console.log(data);
 
     dispatch({
       type: JOB_COMPLETED_SUCCESS,

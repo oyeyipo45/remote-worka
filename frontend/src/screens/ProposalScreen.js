@@ -17,7 +17,6 @@ const ProposalScreen = ({ match, location, history }) => {
 
   const postDetails = useSelector((state) => state.postDetails);
   const { post } = postDetails;
-  console.log(post);
   const jobTitle = post.jobTitle;
   const jobLocation = post.jobLocation;
 
@@ -40,7 +39,6 @@ const ProposalScreen = ({ match, location, history }) => {
       setMessage("Please fill all fields");
     } else {
       const bid = { bidPrice, proposalDetails, jobLocation, jobTitle };
-      console.log(bidPrice, proposalDetails, jobLocation, jobTitle);
       dispatch(createBid(postId, bid));
       dispatch(listBids(userInfo._id));
     }
@@ -53,8 +51,8 @@ const ProposalScreen = ({ match, location, history }) => {
             Enter your proposal details below
           </h3>
 
-          {error && <p>{error}</p>}
-          {success && <p>Bid Submitted</p>}
+          {error && <p className="color-red">{error}</p>}
+          {success && <p className="color-green">Bid Submitted</p>}
           {message && <p>{message}</p>}
         </div>
 

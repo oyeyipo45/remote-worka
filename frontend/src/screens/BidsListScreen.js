@@ -9,7 +9,6 @@ const BidsListScreen = () => {
 
   const bidsList = useSelector((state) => state.bidsList);
   const { bids, loading, error } = bidsList;
-  console.log(bids);
   const dispatch = useDispatch();
 
   useEffect(() => {
