@@ -22,7 +22,7 @@ const BidDetails = ({ history, location, match }) => {
   const { loading, error, bid } = bidDetails;
 
   const postDetails = useSelector((state) => state.postDetails);
-  const { loading: loadingPost, error: errorPost, post } = postDetails;
+  const { loading: loadingPost, post } = postDetails;
   const redirect = location.search ? location.search.split("=")[1] : "/";
   useEffect(() => {
     if (!userInfo._id && !user) {
@@ -84,11 +84,11 @@ const BidDetails = ({ history, location, match }) => {
         ) : (
           <div>
             {bid.response === "accept" ? (
-              <p style={{ color: "green" }}>BID ACCEPTED</p>
+              <p className="color-green">BID ACCEPTED</p>
             ) : bid.response === "pending" ? (
-              <p style={{ color: "orange" }}> BID PENDING </p>
+              <p className="color-Penging"> BID PENDING </p>
             ) : (
-              <p style={{ color: "red" }}> BID DECLINED </p>
+              <p className="color-red"> BID DECLINED </p>
             )}
           </div>
         )}
@@ -116,9 +116,9 @@ const BidDetails = ({ history, location, match }) => {
                 <div>
                   {" "}
                   {bid.response === "accept" ? (
-                    <p style={{ color: "red" }}>Job Closed</p>
+                    <p className="color-red">Job Closed</p>
                   ) : (
-                    <p style={{ color: "green" }}> Job Open </p>
+                    <p className="color-green">Job Open </p>
                   )}
                 </div>
               </div>

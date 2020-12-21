@@ -13,9 +13,9 @@ const BidList = ({ bid }) => {
                 <div className="job-time">
                   <p className="posted"></p>
                   {bid.completed ? (
-                    <p style={{ color: "green" }}>Completed</p>
+                    <p className="color-green">Completed</p>
                   ) : (
-                    <p style={{ color: "red" }}> Uncompleted</p>
+                    <p className="color-red"> Uncompleted</p>
                   )}
                   <p className="time"></p>
                 </div>

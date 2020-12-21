@@ -21,9 +21,9 @@ const Body = ({ post }) => {
             </div>
             <div className="job-location">
               {post.completed ? (
-                <p style={{ color: "red" }}>Job Closed</p>
+                <p className="color-red">Job Closed</p>
               ) : (
-                <p style={{ color: "green" }}> Job Open </p>
+                <p className="color-green"> Job Open </p>
               )}
             </div>
             <div title="view-details" className="view-details">

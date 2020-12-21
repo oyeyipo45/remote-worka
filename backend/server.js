@@ -8,11 +8,11 @@ const postRoutes = require("./routes/postRoutes");
 const authRoutes = require("./routes/authRoutes");
 const bidRoutes = require("./routes/bidRoutes");
 const fileUploadRoutes = require("./routes/fileUploadRoute");
-const helmet = require("helmet");
-const mongoSanitize = require("express-mongo-sanitize");
-const xss = require("xss-clean");
-const rateLimit = require("express-rate-limit");
-const hpp = require("hpp");
+// const helmet = require("helmet");
+// const mongoSanitize = require("express-mongo-sanitize");
+//const xss = require("xss-clean");
+// const rateLimit = require("express-rate-limit");
+// const hpp = require("hpp");
 const { notFound, errorHandler } = require("./middleware/errorMiddlerware.js");
 
 dotenv.config();
@@ -24,24 +24,24 @@ app.use(cors());
 app.use(express.json());
 
 // Sanitize data
-app.use(mongoSanitize());
+//app.use(mongoSanitize());
 
 // Set Security headers
-app.use(helmet());
+//app.use(helmet());
 
 // Prevent XSS attacks
-app.use(xss());
+//app.use(xss());
 
 // Rate Limiting for Api requests
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, //10 mins
-  max: 100,
-});
+// const limiter = rateLimit({
+//   windowMs: 10 * 60 * 1000, //10 mins
+//   max: 100,
+// });
 
-app.use(limiter);
+//app.use(limiter);
 
 //Prevent HTTP params pollution
-app.use(hpp());
+//app.use(hpp());
 
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/users", authRoutes);
