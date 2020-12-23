@@ -19,23 +19,29 @@ const BidDetails = ({ history, location, match }) => {
 
   const bidDetails = useSelector((state) => state.bidDetails);
   const { loading, error, bid } = bidDetails;
+  console.log(bid);
 
   const postDetails = useSelector((state) => state.postDetails);
-  const { loading: loadingPost, post } = postDetails;
+  const { loading: loadingPost, post, error: errorPost } = postDetails;
+  console.log(post);
   const redirect = location.search ? location.search.split("=")[1] : "/";
   useEffect(() => {
     if (!userInfo._id && !user) {
       history.push("/login");
     }
 
+    if (!post) {
+      dispatch(listPostDetails(bid.post));
+    }
+
     dispatch(listBidDetails(match.params.id));
-    dispatch(listPostDetails(bid.post));
   }, [
     dispatch,
     userInfo,
     match,
     history,
     redirect,
+    post,
     user,
     bid.post,
     bid.response,
@@ -65,7 +71,7 @@ const BidDetails = ({ history, location, match }) => {
           <div className="bidlist-screen">
             <p>{userInfoLoading}</p> <p>{loadingPost}</p>
           </div>
-        ) : error ? (
+        ) : error && errorPost ? (
           <div className="bidlist-screen">
             {" "}
             <p>{error}</p>{" "}
@@ -93,9 +99,9 @@ const BidDetails = ({ history, location, match }) => {
       </div>
 
       {loading ? (
-        <p> LOADING ... </p>
+        <p className="bidlist-screen"> LOADING ... </p>
       ) : error ? (
-        <p>ERROR ..... </p>
+        <p className="bidlist-screen">ERROR ..... </p>
       ) : (
         <section className="job ">
           <div className="container-sm">

@@ -74,7 +74,7 @@ const RegisterScreen = ({ location, history }) => {
               name="Acccount Type"
             >
               <option value="">Select Role</option>
-              <option value="hirer" selected>
+              <option value="hirer" defaultValue>
                 Hirer
               </option>
               <option value="freelancer">Freelancer</option>

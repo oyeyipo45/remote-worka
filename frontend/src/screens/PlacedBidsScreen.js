@@ -18,9 +18,9 @@ const PlacedBidsScreen = ({ match, history }) => {
     dispatch(placedBids(userId));
   }, [dispatch, userId, history, userInfo]);
   return loading ? (
-    <p className="topp"> LOADING ... </p>
+    <p className="topp bidlist-screen"> LOADING ... </p>
   ) : error ? (
-    <p className="topp">{error}</p>
+    <p className="topp bidlist-screen color-red">{error}</p>
   ) : (
     <div className="topp">
       {bids.length === 0 ? (

@@ -107,7 +107,7 @@ const CreatePostScreen = ({ location, history }) => {
               name="Job Availability"
             >
               <option value="">Select Availability</option>
-              <option value="pending" selected>
+              <option value="pending" defaultValue>
                 pending
               </option>
             </select>
@@ -180,15 +180,11 @@ const CreatePostScreen = ({ location, history }) => {
               name="Expertise Level"
             >
               <option value="">Select Expertise Level</option>
-              <option value="Entry level" selected>
+              <option value="Entry level" defaultValue>
                 Entry Level
               </option>
-              <option value="intermidiate" selected>
-                Intermidiate
-              </option>
-              <option value="expert" selected>
-                Expert
-              </option>
+              <option value="intermidiate">Intermidiate</option>
+              <option value="expert">Expert</option>
             </select>
           </div>
           <div className="customer-signup-form-group">
@@ -199,12 +195,10 @@ const CreatePostScreen = ({ location, history }) => {
               name="payment verification"
             >
               <option value="">Payment Verification</option>
-              <option value="true" selected>
+              <option value="true" defaultValue>
                 true
               </option>
-              <option value="false" selected>
-                false
-              </option>
+              <option value="false">false</option>
             </select>
           </div>
           <div className="customer-signin-form-group">
