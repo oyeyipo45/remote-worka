@@ -36,7 +36,7 @@ exports.createBid = asyncHandler(async (req, res) => {
 
 // @desc 	Get user Bids
 // @route 	GET /api/v1/bids/applied
-// @access 	Public
+// @access 	Private
 exports.appliedJobs = asyncHandler(async (req, res) => {
   try {
     const user = req.params.id;

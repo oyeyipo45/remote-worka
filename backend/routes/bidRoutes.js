@@ -6,7 +6,6 @@ const {
   acceptBid,
   completeJob,
   appliedJobs,
-  // bidedJobs,
   declineBid,
   getAllBids,
 } = require("../controllers/bidController.js");
@@ -21,7 +20,6 @@ router
 router
   .route("/completed/:id")
   .put(protect, authorize("hirer", "admin"), completeJob);
-//router.route("/bids/:id").get(protect, authorize("hirer"), bidedJobs);
 router.route("/accept/:id").put(protect, authorize("hirer"), acceptBid);
 router.route("/decline/:id").put(protect, authorize("hirer"), declineBid);
 

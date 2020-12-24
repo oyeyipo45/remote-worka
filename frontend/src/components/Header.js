@@ -7,9 +7,6 @@ import { logout } from "../redux/actions/userActions";
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const bidsList = useSelector((state) => state.bidsList);
-  const { bids } = bidsList;
   const dispatch = useDispatch();
 
   const logoutHandler = (e) => {
@@ -73,7 +70,7 @@ const Header = () => {
               </li>
               <li className="nav__item">
                 <Link
-                  to="/"
+                  to="/login"
                   className="nav__link 
 							logout"
                   onClick={logoutHandler}

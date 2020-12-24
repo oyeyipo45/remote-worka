@@ -10,7 +10,6 @@ import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import CreatePostScreen from "./screens/CreatePostScreen";
 import EditPostScreen from "./screens/EditPostScreen";
-import BidsListScreen from "./screens/BidsListScreen";
 import BidDetailsScreen from "./screens/BidDetailsScreen";
 import PlacedBidsScreen from "./screens/PlacedBidsScreen";
 import BidsListHirerScreen from "./screens/BidListHirerScreen";
@@ -27,7 +26,6 @@ const App = () => {
           <Route path="/bids/:id" component={BidDetailsScreen} />
           <Route path="/edit/:id" component={EditPostScreen} />
           <Route path="/createPost" component={CreatePostScreen} />
-          <Route path="/bidList/:id" component={BidsListScreen} />
           <Route path="/bidListHirer/:id" component={BidsListHirerScreen} />
           <Route path="/profile/:id" component={ProfileScreen} />
           <Route path="/register" component={RegisterScreen} />

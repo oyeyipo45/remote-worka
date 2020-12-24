@@ -34,6 +34,8 @@ const postSchema = mongoose.Schema({
   },
   jobType: {
     type: String,
+    enum: ["Remote", "Fulltime Onsite"],
+    required: [true, "Enter Job Type"],
   },
 
   jobRequirements: {

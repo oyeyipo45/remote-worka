@@ -142,14 +142,19 @@ const CreatePostScreen = ({ location, history }) => {
               onChange={(e) => setJobLocation(e.target.value)}
             />
           </div>
-          <div className="customer-signin-form-group">
-            <input
-              type="text"
-              className="customer-signin-form-input"
-              placeholder="Job Type is remote or fulltime"
+          <div className="customer-signup-form-group">
+            <select
+              className="customer-signup-form-input"
               value={jobType}
               onChange={(e) => setJobType(e.target.value)}
-            />
+              name="Job Type"
+            >
+              <option value="">Select Job Type</option>
+              <option value="Remote" defaultValue>
+                Remote
+              </option>
+              <option value="Fulltime Onsite">Fulltime Onsite</option>
+            </select>
           </div>
           <div className="customer-signin-form-group">
             <input

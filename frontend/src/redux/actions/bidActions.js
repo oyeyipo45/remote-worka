@@ -63,6 +63,7 @@ export const placedBids = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
+    console.log(config);
     const { data } = await axios.get(`/api/v1/bids/appliedJobs/${id}`, config);
 
     dispatch({ type: BID_MADE_LIST_SUCCESS, payload: data });
