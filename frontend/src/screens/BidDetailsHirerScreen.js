@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { listBidDetails } from "../redux/actions/bidActions";
+import {
+  listBidDetails,
+  acceptBid,
+  declineBid,
+  markJobAsCompleted,
+} from "../redux/actions/bidActions";
 import { listPostDetails } from "../redux/actions/postActions";
 
-const BidDetails = ({ history, location, match }) => {
+const BidDetailsHirerScreen = ({ history, location, match }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -17,8 +22,8 @@ const BidDetails = ({ history, location, match }) => {
 
   const postDetails = useSelector((state) => state.postDetails);
   const { loading: loadingPost, post, error: errorPost } = postDetails;
-
   const redirect = location.search ? location.search.split("=")[1] : "/";
+  console.log(post);
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -41,6 +46,20 @@ const BidDetails = ({ history, location, match }) => {
     bid.response,
   ]);
 
+  const acceptBidHandler = () => {
+    dispatch(acceptBid(bid._id, ""));
+    dispatch(listBidDetails(match.params.id));
+  };
+
+  const declineBidHandler = () => {
+    dispatch(declineBid(bid._id, ""));
+    dispatch(listBidDetails(match.params.id));
+  };
+
+  const jobCompletedHandler = () => {
+    dispatch(markJobAsCompleted(bid._id, ""));
+    dispatch(listBidDetails(match.params.id));
+  };
   return (
     <>
       <div className="post-details-heading">
@@ -55,6 +74,15 @@ const BidDetails = ({ history, location, match }) => {
           <div className="bidlist-screen">
             {" "}
             <p>{error}</p>{" "}
+          </div>
+        ) : bid.response === "pending" ? (
+          <div className="bid-choice">
+            <button className="accept-btn" onClick={acceptBidHandler}>
+              Accept Bid
+            </button>
+            <button className="delete-btn" onClick={declineBidHandler}>
+              Decline Bid
+            </button>
           </div>
         ) : (
           <div>
@@ -78,16 +106,16 @@ const BidDetails = ({ history, location, match }) => {
           <div className="container-sm">
             <div className="job-details">
               <div className="company__details">
-                {/* <div className="company__name">
+                <div className="company__name">
                   <h2> Job posted by {post.hirerName}</h2>
-                </div> */}
+                </div>
               </div>
 
               <div className="job-details__post">
-                {/* <div className="job-title">
+                <div className="job-title">
                   <h2>{post.jobTitle}</h2>
                 </div>
-                <p>{post.location}</p> */}
+                <p>{post.location}</p>
                 <div>
                   {" "}
                   {bid.response === "accept" ? (
@@ -114,7 +142,12 @@ const BidDetails = ({ history, location, match }) => {
                   {bid.completed ? (
                     <p style={{ color: "green" }}>Job Completed</p>
                   ) : (
-                    <p style={{ color: "red" }}>Job Uncompleted</p>
+                    <button
+                      className="accept-btn"
+                      onClick={jobCompletedHandler}
+                    >
+                      Mark Completed
+                    </button>
                   )}
                 </div>
               </article>
@@ -126,4 +159,4 @@ const BidDetails = ({ history, location, match }) => {
   );
 };
 
-export default BidDetails;
+export default BidDetailsHirerScreen;

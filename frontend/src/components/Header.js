@@ -47,7 +47,7 @@ const Header = () => {
                   </li>
                   <li className="nav__item">
                     <Link
-                      to={`/bidList/${userInfo._id}`}
+                      to={`/bidListHirer/${userInfo._id}`}
                       className="nav__link"
                       onClick={getBidListHandler}
                     >
