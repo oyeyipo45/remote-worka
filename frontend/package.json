@@ -1,7 +1,6 @@
 {
   "name": "upwork",
   "version": "0.1.0",
-  "homepage": ".",
   "proxy": "http://127.0.0.1:5010",
   "private": true,
   "dependencies": {

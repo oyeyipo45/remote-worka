@@ -9,13 +9,19 @@ const {
   declineBid,
   getAllBids,
 } = require("../controllers/bidController.js");
-const { authorize } = require("../middleware/authMiddleware");
+const { protect, authorize } = require("../middleware/authMiddleware");
 
-router.route("/").get(authorize("hirer"), getAllBids);
-router.route("/appliedJobs/:id").get(appliedJobs);
-router.route("/:id").post(authorize("freelancer"), createBid).get(getBidById);
-router.route("/completed/:id").put(authorize("hirer", "admin"), completeJob);
-router.route("/accept/:id").put(authorize("hirer"), acceptBid);
-router.route("/decline/:id").put(authorize("hirer"), declineBid);
+router.route("/").get(protect, authorize("hirer"), getAllBids);
+router.route("/appliedJobs/:id").get(protect, appliedJobs);
+router
+  .route("/:id")
+  .post(protect, authorize("freelancer"), createBid)
+  .get(protect, getBidById);
+router
+  .route("/completed/:id")
+  .put(protect, authorize("hirer", "admin"), completeJob);
+//router.route("/bids/:id").get(protect, authorize("hirer"), bidedJobs);
+router.route("/accept/:id").put(protect, authorize("hirer"), acceptBid);
+router.route("/decline/:id").put(protect, authorize("hirer"), declineBid);
 
 module.exports = router;
