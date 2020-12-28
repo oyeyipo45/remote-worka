@@ -106,9 +106,7 @@ const BidDetailsHirerScreen = ({ history, location, match }) => {
           <div className="container-sm">
             <div className="job-details">
               <div className="company__details">
-                <div className="company__name">
-                  <h2> Job posted by {post.hirerName}</h2>
-                </div>
+                <div className="company__name"></div>
               </div>
 
               <div className="job-details__post">
@@ -138,7 +136,7 @@ const BidDetailsHirerScreen = ({ history, location, match }) => {
                 </div>
 
                 <div className="mb-2">
-                  <h5>Bid Price</h5>
+                  <h5>Bid Status</h5>
                   {bid.completed ? (
                     <p style={{ color: "green" }}>Job Completed</p>
                   ) : (

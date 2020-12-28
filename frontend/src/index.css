@@ -30,7 +30,6 @@
 .grid-item .job-time,
 .job .job-details__time {
   display: flex;
-  padding-top: 3rem;
   color: var(--gray-dark);
   line-height: 1.25rem;
   -webkit-box-align: center;
@@ -151,9 +150,9 @@ body {
 }
 
 .main-section {
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
+  margin-top: 5rem;
 }
 
 .link-back {
@@ -206,8 +205,6 @@ textarea {
   position: fixed;
   top: 0;
   left: 0;
-  opacity: 100;
-
   z-index: var(--z-fixed);
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
@@ -230,9 +227,16 @@ textarea {
     width: 80%;
     height: 100%;
     padding: 1.5rem;
-    background-color: var(--second-color);
-    transition: 0.5s;
+    background-color: var(--first-color);
+    color: white;
+    transition: 0.2s;
   }
+
+  .nav__menu.open {
+    right: -10%;
+    top: 0%;
+  }
+
   .bd-grid {
     width: 95%;
     max-width: 600px;
@@ -243,6 +247,23 @@ textarea {
   }
   .home__title {
     font-size: 1.4rem;
+  }
+
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 16rem;
+    width: 100%;
+  }
+  .nav__item {
+    margin-left: 0 !important;
+  }
+  .nav__link {
+    color: white !important;
+    margin: 1rem 0rem !important;
+    cursor: pointer;
   }
 }
 .homer_img {
@@ -289,11 +310,6 @@ textarea {
   right: 0;
 }
 @media screen and (min-width: 766px) {
-  .section {
-    padding-top: 4rem;
-    padding-bottom: 3rem;
-    margin-top: 3rem;
-  }
   .section-title {
     margin-bottom: var(--mb-4);
   }
@@ -307,7 +323,6 @@ textarea {
   .nav__list {
     display: flex;
     padding-top: 0;
-    border: "1px solid red";
   }
   .nav__item {
     margin-left: var(--mb-4);
@@ -325,31 +340,20 @@ textarea {
   }
 }
 
+.job-details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* sections  */
 
 .section-title {
-  position: relative;
   font-size: var(--h2-font-size);
   color: var(--first-color);
   margin-top: var(--mb-2);
   margin-bottom: var(--mb-4);
   text-align: center;
-}
-
-.section-title::after {
-  position: absolute;
-  content: "";
-  width: 64px;
-  height: 0.18rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 2rem;
-  background-color: var(--first-color);
-}
-
-section {
-  padding-bottom: 3rem;
 }
 
 /* Job  section*/
@@ -382,20 +386,18 @@ section {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  position: relative;
-  padding: 0 2rem 2rem;
+  padding: 1rem;
 }
 
 .grid-item .company-logo {
   border-radius: 1rem;
   display: -ms-grid;
-  display: grid;
+  display: flex;
   place-items: center;
   font-family: var(--ff-bold);
   width: 3rem;
   height: 3rem;
   color: var(--white);
-  position: absolute;
   padding: 0.5rem;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -423,7 +425,6 @@ section {
 }
 
 .grid-item .view-details {
-  position: absolute;
   top: 0;
   right: 0;
   padding: 1rem;
@@ -485,7 +486,21 @@ section {
   }
   .grid-item {
     width: 30rem;
-    margin: 0 auto;
+    margin: 2rem auto;
+    padding: 0.5rem;
+  }
+
+  section {
+    padding-bottom: 2rem;
+  }
+
+  .home-body {
+    margin-top: 1rem !important;
+  }
+
+  .footer-cover,
+  .nav {
+    padding: 1rem;
   }
 }
 
@@ -994,7 +1009,7 @@ section {
 
 .bid-choice {
   max-width: 300px;
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -119,9 +119,9 @@ export const createBid = (post, bid) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
+    console.log(config);
     const { data } = await axios.post(`/api/v1/bids/${post}`, bid, config);
-
+    console.log(data);
     dispatch({
       type: BID_CREATE_SUCCESS,
       payload: data,

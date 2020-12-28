@@ -18,6 +18,13 @@ const Header = () => {
     dispatch(listBids());
   };
 
+  const openMenu = () => {
+    document.querySelector(".nav__menu").classList.add("open");
+  };
+  const closeMenu = () => {
+    document.querySelector(".nav__menu").classList.remove("open");
+  };
+
   return (
     <header className="l-header">
       <nav className="nav bd-grid">
@@ -26,10 +33,17 @@ const Header = () => {
             <h2>Remote Worka</h2>
           </Link>
         </div>
+
         {userInfo ? (
           <div className="nav__menu" id="nav-menu">
+            <div className="nav__toggle" id="nav-toggle" onClick={closeMenu}>
+              <img
+                src="https://img.icons8.com/ios-glyphs/30/ffffff/macos-close.png"
+                alt="close icon"
+              />
+            </div>
             <ul className="nav__list">
-              <li className="nav__link">
+              <li className="nav__item">
                 {" "}
                 <Link className="nav__link" to={`/profile/${userInfo._id}`}>
                   {userInfo.name}
@@ -82,6 +96,12 @@ const Header = () => {
           </div>
         ) : (
           <div className="nav__menu" id="nav-menu">
+            <div className="nav__toggle" id="nav-toggle" onClick={closeMenu}>
+              <img
+                src="https://img.icons8.com/ios-glyphs/30/ffffff/macos-close.png"
+                alt="close icon"
+              />
+            </div>
             <ul className="nav__list">
               <li className="nav__item">
                 <Link to="/login" className="nav__link">
@@ -96,7 +116,7 @@ const Header = () => {
             </ul>
           </div>
         )}
-        <div className="nav__toggle" id="nav-toggle">
+        <div className="nav__toggle" id="nav-toggle" onClick={openMenu}>
           <img
             src="https://img.icons8.com/android/24/000000/menu.png"
             alt="hamburger icon"
