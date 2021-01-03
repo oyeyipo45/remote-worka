@@ -16,9 +16,8 @@ const bidSchema = mongoose.Schema({
     default: Date.now,
   },
   post: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: {},
     required: true,
-    ref: "Post",
   },
   response: {
     type: String,

@@ -63,7 +63,6 @@ export const placedBids = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(config);
     const { data } = await axios.get(`/api/v1/bids/appliedJobs/${id}`, config);
 
     dispatch({ type: BID_MADE_LIST_SUCCESS, payload: data });
@@ -119,9 +118,7 @@ export const createBid = (post, bid) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(config);
     const { data } = await axios.post(`/api/v1/bids/${post}`, bid, config);
-    console.log(data);
     dispatch({
       type: BID_CREATE_SUCCESS,
       payload: data,

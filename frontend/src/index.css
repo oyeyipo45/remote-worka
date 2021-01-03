@@ -159,6 +159,15 @@ body {
   margin-bottom: 3rem;
   margin-top: 5rem;
 }
+
+.link-back-error {
+  margin-top: 5rem;
+  margin-left: 5rem;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .topp {
   margin-top: 10rem;
 }
@@ -620,6 +629,7 @@ textarea {
   background-color: var(--base-bg);
   border-radius: 0.375rem;
   padding: 0 1.4rem 2rem;
+  margin-bottom: 3rem;
 }
 
 .job .job-details__time {
@@ -1016,7 +1026,7 @@ textarea {
 }
 
 .bidlist-screen {
-  height: 80vh;
+  height: 70vh;
   width: 100vw;
   display: flex;
   justify-content: center;

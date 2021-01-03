@@ -23,7 +23,6 @@ const BidDetailsHirerScreen = ({ history, location, match }) => {
   const postDetails = useSelector((state) => state.postDetails);
   const { loading: loadingPost, post, error: errorPost } = postDetails;
   const redirect = location.search ? location.search.split("=")[1] : "/";
-  console.log(post);
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -102,7 +101,7 @@ const BidDetailsHirerScreen = ({ history, location, match }) => {
       ) : error ? (
         <p className="bidlist-screen">ERROR ..... </p>
       ) : (
-        <section className="job ">
+        <section className="job">
           <div className="container-sm">
             <div className="job-details">
               <div className="company__details">

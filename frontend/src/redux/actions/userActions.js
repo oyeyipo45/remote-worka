@@ -21,7 +21,6 @@ import {
   USER_UPDATE_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
-const baseUrl = `http://127.0.0.1:5010`;
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -36,7 +35,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `${baseUrl}/api/v1/users/login`,
+      `/api/v1/users/login`,
       { email, password },
       config
     );
